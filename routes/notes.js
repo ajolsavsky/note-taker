@@ -12,11 +12,46 @@ notes.post('/', (req, res) => {
 
     const { title, text } = req.body;
 
+    //If all required properties are present
     if (title && text) {
+        //Variable for object we'll save
         const newNote = {
             title,
             text
         };
+
+        //Obtain existing notes
+        fs.readFile('./db/db.json','utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+            } else {
+                //converst string into JSON object
+                const parsedNotes = JSON.parse(data);
+
+                parsedNotes.push(newNote);
+
+                fs.writeFile(
+                    './db/db.json', JSON.stringify(parsedNotes, null, 4), (writeErr) =>
+                    writeErr
+                    ? console.error(writeErr)
+                    : console.info('Successfully updated notes!') 
+                )
+            }
+        }
+        )
+
+        // //Converst data to string for saving
+        // const noteString = JSON.stringify(newNote);
+
+        // //Write the string to file
+        // fs.writeFile(`./db/db.json`, noteString, (err) =>
+        //     err
+        //         ? console.error(err)
+        //         : console.log(
+        //             `Note has been written to JSON file`
+        //         )
+        // )
+
 
         const response = {
             status: 'success',
