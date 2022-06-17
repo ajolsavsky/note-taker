@@ -21,17 +21,19 @@ notes.post('/', (req, res) => {
         };
 
         //Obtain existing notes
-        fs.readFile('./db/db.json','utf8', (err, data) => {
+        //??? How does err data work
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             } else {
-                //converst string into JSON object
+                //converts string into JSON object
                 const parsedNotes = JSON.parse(data);
 
                 parsedNotes.push(newNote);
 
                 fs.writeFile(
-                    './db/db.json', JSON.stringify(parsedNotes, null, 4), (writeErr) =>
+                    // convert back into a string
+                    './db/db.json', JSON.stringify(parsedNotes), (writeErr) =>
                     writeErr
                     ? console.error(writeErr)
                     : console.info('Successfully updated notes!') 
@@ -39,18 +41,6 @@ notes.post('/', (req, res) => {
             }
         }
         )
-
-        // //Converst data to string for saving
-        // const noteString = JSON.stringify(newNote);
-
-        // //Write the string to file
-        // fs.writeFile(`./db/db.json`, noteString, (err) =>
-        //     err
-        //         ? console.error(err)
-        //         : console.log(
-        //             `Note has been written to JSON file`
-        //         )
-        // )
 
 
         const response = {
@@ -69,3 +59,8 @@ notes.post('/', (req, res) => {
 console.log(`Here's notes.js ✏️`)
 
 module.exports = notes;
+
+//TODO Return updated notes array
+//TODO Add unique ID to new note - use uuid npm module and require it
+//TODO Add delete functionality w/ referenced id
+//TODO Deploy app when functional
