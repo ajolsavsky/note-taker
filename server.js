@@ -15,6 +15,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //GET
+//Index route - landing page
+app.get('/', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+)
+//Notes route
+app.get('/notes', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/notes.html'))
+)
+//Wildcard route
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+)
 
 
 //LISTEN
