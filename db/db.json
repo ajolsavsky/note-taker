@@ -1,18 +1,1 @@
-[
-    {
-        "title": "Test Title",
-        "text": "Test text"
-    },
-    {
-        "title": "A new title",
-        "text": "Other test text"
-    },
-    {
-        "title": "Lookie lookie",
-        "text": "New notie"
-    },
-    {
-        "title": "Wooow",
-        "text": "Look at this fancy thing"
-    }
-]
+[{"title":"NEW ID NOTE","text":"OOOOOHHH","id":"d439d85b-026e-49ca-9280-7badfab96c67"},{"title":"Look at my new note","text":"Wow, so pretty","id":"8162a473-2b6d-4d40-8199-85e6fdbc51f6"},{"title":"Another one yay","text":"Lookie at this","id":"1a4e112d-c185-40b1-9427-0c18d5bf6d4a"}]
