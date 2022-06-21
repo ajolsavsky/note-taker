@@ -18,10 +18,10 @@
   ## Usage
   The app is [deployed on Heroku](https://peaceful-bastion-70910.herokuapp.com/notes). If you'd like to modify, please create a branch and ensure you have Node.js and run npm install against the dependancies folder to ensure full functionality.
   
+   ![screenshot of finished page](./Assets/App-Screenshot.png)
   ## License
   Read more about MIT here: [MIT](https://opensource.org/licenses/MIT)
 
-   ![screenshot of finished page](./Assets/App-Screenshot.png)
   
   ## Contributing
   Contributors should read the installation section.
