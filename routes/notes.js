@@ -67,13 +67,6 @@ notes.delete('/:id', (req, res) => {
     console.log(req.url);
     
     const noteId = req.params.id;
-    // const updatedData = [];
-
-    // for ( var i = 0; i < notesData.length; i++) {
-    //     if (noteId !== notesData[i].id) {
-    //         updatedData.push(notesData[i])
-    //     }
-    // }
     
     notesData.splice(noteId -1, 1);
 
