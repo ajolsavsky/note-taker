@@ -67,15 +67,23 @@ notes.delete('/:id', (req, res) => {
     console.log(req.url);
     
     const noteId = req.params.id;
-    const updatedData = [];
+    // const updatedData = [];
 
-    for ( var i = 0; i < notesData.length; i++) {
-        if (noteId !== notesData[i].id) {
-            updatedData.push(notesData[i])
-        }
-    }
+    // for ( var i = 0; i < notesData.length; i++) {
+    //     if (noteId !== notesData[i].id) {
+    //         updatedData.push(notesData[i])
+    //     }
+    // }
     
-    fs.writeFileSync('./db/db.json', JSON.stringify(updatedData, null, 4));
+    notesData.splice(noteId -1, 1);
+
+    notesData.forEach((obj, i) => {
+        obj.id = i + 1;
+    });
+
+    fs.writeFileSync('./db/db.json', JSON.stringify(updatedData, null, 4), function () {
+        res.json(response);
+    });
 
     const response = {
         status: 'success',
@@ -83,7 +91,6 @@ notes.delete('/:id', (req, res) => {
     };
     
     console.log(response);
-    res.sendFile(path.join(__dirname, '../db/db.json'))
 });
 
 
