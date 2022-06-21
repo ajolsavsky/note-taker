@@ -52,6 +52,8 @@ notes.post('/', (req, res) => {
         };
         
         console.log(response);
+        // fs.writeFile
+
         res.sendFile(path.join(__dirname, '../db/db.json'))
     } else {
         res.status(500).json('Error in posting new note')
