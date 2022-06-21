@@ -13,7 +13,6 @@ notes.get('/:id', (req, res) => {
         const noteId = req.params.id;
 
         const specificNote = notesData.filter(note => note.id === noteId)
-
         
         if (specificNote.length !== 0) {
             res.json(specificNote);
@@ -24,22 +23,6 @@ notes.get('/:id', (req, res) => {
     } catch (error) {
         res.json(error)
     }
-});
-
-// DELETE route for deleting a specific note
-notes.delete('/:id', (req, res) => {
-    const noteId = req.params.id;
-    const updatedData = [];
-
-    for ( var i = 0; i < notesData.length; i++) {
-        if (noteId !== notesData[i].id) {
-            updatedData.push(notesData[i])
-        }
-    }
-    
-    fs.writeFileSync('./db/db.json', JSON.stringify(updatedData, null, 4));
-
-    res.sendFile(path.join(__dirname, '../db/db.json'))
 });
 
 //POST Route
@@ -75,6 +58,32 @@ notes.post('/', (req, res) => {
     }
 }
 )
+
+// DELETE route for deleting a specific note
+notes.delete('/:id', (req, res) => {
+    console.info(`${req.method} request received to delete a new note`)
+    console.log(req.url);
+    
+    const noteId = req.params.id;
+    const updatedData = [];
+
+    for ( var i = 0; i < notesData.length; i++) {
+        if (noteId !== notesData[i].id) {
+            updatedData.push(notesData[i])
+        }
+    }
+    
+    fs.writeFileSync('./db/db.json', JSON.stringify(updatedData, null, 4));
+
+    const response = {
+        status: 'success',
+        body: updatedData,
+    };
+    
+    console.log(response);
+    res.sendFile(path.join(__dirname, '../db/db.json'))
+});
+
 
 console.log(`Here's notes.js ✏️`)
 
